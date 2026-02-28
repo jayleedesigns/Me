@@ -1,1119 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Jason Nester - UX &amp; Graphic Designer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Responsive One Page Parallax Template" />
-<meta name="author" content="ClaPat Studio">
-<meta charset="UTF-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/ico" href="images/favicon.ico" />
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="style.css" rel="stylesheet" />
-<link rel="alternate stylesheet" type="text/css" href="css/colors/color-gray.css" title="gray">
-<link rel="alternate stylesheet" type="text/css" href="css/colors/color-green.css" title="green">
-<link rel="alternate stylesheet" type="text/css" href="css/colors/color-red.css" title="red">
-<link rel="alternate stylesheet" type="text/css" href="css/colors/color-blue.css" title="blue">
-<link rel="alternate stylesheet" type="text/css" href="css/colors/color-yellow.css" title="yellow">
-<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" />
-<link href="css/jquery.bxslider.css" rel="stylesheet" />
-<link href="css/font-awesome.min.css" rel="stylesheet" />
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' />
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Nester | Creative Systems Designer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .neon-text { text-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
+    </style>
 </head>
+<body>
+    <div id="root"></div>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="75">
+    <script type="text/babel">
+        const { useState, useEffect, cloneElement } = React;
+        const { 
+            ChevronRight, Layout, Layers, Globe, Play, Monitor, 
+            Cpu, Palette, Box, ArrowRight, Menu, X, 
+            ExternalLink, MessageSquare 
+        } = lucideReact;
 
-<!-- Preloader -->
+        const BehanceIcon = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M9 12a2 2 0 0 0-2-2H5v4h2a2 2 0 0 0 2-2z" />
+                <path d="M5 10V7h3a2 2 0 0 1 2 2v1" />
+                <path d="M13 14h5" />
+                <path d="M18 11a3 3 0 1 0-6 0v3h6Z" />
+                <path d="M2 13V6h6a4 4 0 0 1 0 8H2Z" />
+                <path d="M14 8h4" />
+            </svg>
+        );
 
-<!--/Preloader --> 
+        const App = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [activeProcess, setActiveProcess] = useState(2);
 
-<!-- Home Section -->
-<div id="home">
-  <div class="home-pattern">
-    <div class="container clearfix">
-      <div id="home-center" class="element_fade_in">
-        <div class="div-align-center">
-          <ul class="text-slide-vertical">
-            <li>My Name is <span class="text-color">Jason</span> Nester</li>
-            <li>I Create <span class="text-color">User</span> Experiences</li>
-            <li>and <span class="text-color">Dynamic</span> Designs </li>
-          </ul>
-          
-          <a href="#we-are-newave" class="newave-button medium outline white">Who I am</a> </div>
-      </div>
-    </div>
-    <!--/Container --> 
-    
-  </div>
-</div>
-<!-- End Home Section --> 
+            const expertise = [
+                { title: "UX & Product Design", icon: <Layout className="w-5 h-5 text-cyan-400" /> },
+                { title: "Brand Architecture", icon: <Layers className="w-5 h-5 text-purple-400" /> },
+                { title: "Web & Digital Systems", icon: <Globe className="w-5 h-5 text-blue-400" /> },
+                { title: "Multimedia & Storytelling", icon: <Palette className="w-5 h-5 text-pink-400" /> },
+                { title: "AI-Enhanced Workflows", icon: <Cpu className="w-5 h-5 text-cyan-500" /> },
+            ];
 
-<!-- Navigation -->
-<div id="navigation" class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container no-padding" style="float:right;"> <a class="show-menu" data-toggle="collapse" data-target=".nav-collapse"> <span class="show-menu-bar"></span> </a>
-      <div id="logo"><a class="external" href="index.html"></a></div>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li class="menu-1"><a class="colapse-menu1" href="#home">Home</a></li>
-          <li class="menu-2"><a class="colapse-menu1" href="#we-are-newave">About</a></li>
-          <li class="menu-5"><a class="colapse-menu1" href="#portfolio">Portfolio</a></li>
-          <li class="menu-6"><a class="colapse-menu1" href="#contact-parallax">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<!--/Navigation --> 
+            const processSteps = ["Discovery", "Strategy", "UX & Design", "Build & Launch", "Optimize"];
 
-<!-- We Are Newave -->
-<section id="we-are-newave"> 
-  
-  <!-- Container -->
-  <div class="container"> 
-    
-    <!-- Section Title -->
-    <div class="section-title">
-      <h1>Hello I'm Jason Nester</h1>
-      <span class="border"></span>
-      <p>I am a hardworking guy with a comprehensive knowledge of web and
-        multimedia technologies from Northeast Ohio. I like to create colorful and
-        dynamic media that engages and entertains. I have over 14 years
-        experience in web design and over 18 in art and traditional illustration. I
-        have worked at several big creative agencies as well as Kent State
-        University as An Educational Technologies Designer. I have a wide skill set
-        including but not limited to, graphic design, illustration, character design,
-        branding, motion graphics and web design and development, as well as
-        mobile app and game development.
-        I am looking for opportunities in Graphic Design and Front-End
-        Development.</p>
-    </div>
-    <!--/Section Title -->
-    
-    <div class="screens">
-      <div class="small-screen-left"><img class="element_from_left" src="images/small_left_screen.png" alt="" /></div>
-      <div class="small-screen-right"><img class="element_from_right" src="images/small_right_screen.png" alt="" /></div>
-      <div class="big-screen"><img class="element_fade_in" src="images/big_screen.png" alt="" /></div>
-    </div>
-  </div>
-  <!--/Container -->
-  <div id="quote-parallax" class="parallax" style="background-image: url('images/separator2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20" style="height:100px;">
-  <div class="parallax-overlay parallax-background-color" style="height:100px !important;">
-    <div class="container quote" style="height:100px !important;">
-      <h1 style="height:100px !important;"></h1>
-    </div>
-  </div>
-  </div>
-</section>
-<!--/We Are Newave --> 
+            return (
+                <div className="min-h-screen bg-[#020617] text-slate-200 overflow-x-hidden selection:bg-cyan-500/30">
+                    {/* Floating Background Effects */}
+                    <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10">
+                        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[120px] rounded-full"></div>
+                    </div>
 
-<!-- We are good at -->
-<section id="we-are-good-at"> 
-  
-  <!-- Container -->
-  <div class="container small-width"> 
-    
-    <!-- Section Title -->
-    <div class="section-title">
-      <h1>My Skills & Abilities</h1>
-      <span class="border"></span> </div>
-    <!--/Section Title -->
-    
-    <div class="one_half"> 
-      
-      <!-- Progress Bar -->
-      <div class="skills">
-        <ul class="bar">
-          <li>
-            <div class="bar-wrap"><span data-width="100"><strong>Mobile & Web Design 100%</strong></span></div>
-          </li>
-          <li>
-            <div class="bar-wrap"><span data-width="90"><strong>User Experience 90%</strong></span></div>
-          </li>
-          <li>
-            <div class="bar-wrap"><span data-width="95"><strong>Brand Identity 95%</strong></span></div>
-          </li>
-        </ul>
-      </div>
-      <!--/Progress Bar --> 
-      
-    </div>
-    <div class="one_half last"> 
-      
-      <!-- Progress Bar -->
-      <div class="skills">
-        <ul class="bar">
-          <li>
-            <div class="bar-wrap"><span data-width="90"><strong>Mobile Design 90%</strong></span></div>
-          </li>
-          <li>
-            <div class="bar-wrap"><span data-width="95"><strong>Graphic Design 95%</strong></span></div>
-          </li>
-          <li>
-            <div class="bar-wrap"><span data-width="80"><strong>Video Production 80%</strong></span></div>
-          </li>
-        </ul>
-      </div>
-      <!--/Progress Bar --> 
-      
-    </div>
-  </div>
-  <!--/Container --> 
-  
-</section>
-<!--/We are good at --> 
+                    {/* Navbar */}
+                    <nav className="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-cyan-500 flex items-center justify-center rounded font-bold text-black text-xl shadow-[0_0_15px_rgba(6,182,212,0.3)]">JN</div>
+                                <div className="hidden sm:block">
+                                    <h1 className="text-lg font-bold text-white leading-none">JASON NESTER</h1>
+                                    <p className="text-[10px] uppercase tracking-widest text-cyan-400 font-medium">Creative Systems Designer</p>
+                                </div>
+                            </div>
+                            <div className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-widest">
+                                {['Work', 'Expertise', 'About', 'Contact'].map(item => (
+                                    <a key={item} href={`#${item.toLowerCase()}`} className="text-slate-400 hover:text-cyan-400 transition-colors">{item}</a>
+                                ))}
+                                <button className="px-6 py-2 rounded bg-cyan-500 text-black hover:bg-cyan-400 transition-all font-black">Let's Talk</button>
+                            </div>
+                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-white"><Menu /></button>
+                        </div>
+                    </nav>
 
-<!-- Our Team --> 
+                    {/* Hero */}
+                    <main className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                            <div className="lg:col-span-8 space-y-24">
+                                <section>
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-widest uppercase text-slate-400 mb-8">
+                                        <span>Systems Thinker</span>
+                                        <div className="w-1 h-1 bg-cyan-500 rounded-full"></div>
+                                        <span className="text-white">Designer</span>
+                                        <div className="w-1 h-1 bg-cyan-500 rounded-full"></div>
+                                        <span>Developer</span>
+                                    </div>
+                                    <h2 className="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-8">
+                                        I DESIGN <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">SCALABLE</span><br />
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">DIGITAL EXPERIENCES</span>
+                                    </h2>
+                                    <p className="max-w-xl text-lg text-slate-400 leading-relaxed mb-12">
+                                        Creative Strategist & UX Designer building brand systems, digital products, and narrative-driven solutions that convert.
+                                    </p>
+                                    <div className="flex flex-wrap gap-4">
+                                        <button className="px-8 py-4 bg-cyan-500 text-black font-black rounded-lg flex items-center gap-2 hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">
+                                            View Case Studies <ArrowRight size={18} />
+                                        </button>
+                                        <button className="px-8 py-4 glass text-white font-black rounded-lg flex items-center gap-2 hover:bg-white/10 transition-all">
+                                            <Play size={18} fill="currentColor" /> View Behance
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-3 gap-8 max-w-lg border-t border-white/10 pt-10 mt-12">
+                                        {[{v: "21+", l: "Years", s: "Web & Dev"}, {v: "20+", l: "Years", s: "Art & Illustration"}, {v: "100+", l: "Projects", s: "Delivered"}].map((stat, i) => (
+                                            <div key={i}>
+                                                <div className="text-3xl font-bold text-white">{stat.v} <span className="text-xs font-medium text-slate-500 block uppercase tracking-tighter">{stat.l}</span></div>
+                                                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.s}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
 
-<!--/We Are Newave --> 
+                                {/* Process */}
+                                <section className="glass rounded-3xl p-8 md:p-12">
+                                    <div className="text-center mb-12">
+                                        <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-cyan-400 mb-2">My Design Process</h3>
+                                        <div className="h-px w-20 bg-cyan-500/30 mx-auto"></div>
+                                    </div>
+                                    <div className="flex flex-wrap md:flex-nowrap justify-between items-center gap-4">
+                                        {processSteps.map((step, i) => (
+                                            <div key={i} onClick={() => setActiveProcess(i)} className={`flex-1 text-center py-4 px-2 rounded-xl border transition-all cursor-pointer ${activeProcess === i ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.1)]' : 'bg-transparent border-white/5 text-slate-500'}`}>
+                                                <div className="text-[9px] font-bold mb-1 opacity-50">STEP 0{i+1}</div>
+                                                <div className="text-[11px] font-black uppercase tracking-widest">{step}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
 
-<!-- Newsletter -->
-<div id="quote-parallax" class="parallax" style="background-image: url('images/separator2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20" style="height:100px;">
-<div class="parallax-overlay parallax-background-color" style="height:100px !important;">
-  <div class="container quote" style="height:100px !important;">
-    <h1 style="height:100px !important;"></h1>
-  </div>
-</div>
-</div>
+                            {/* Sidebar */}
+                            <aside className="lg:col-span-4 space-y-12">
+                                <div className="space-y-6">
+                                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-white flex items-center gap-3">
+                                        Core <span className="text-cyan-400">Expertise</span>
+                                        <div className="flex-1 h-px bg-white/10"></div>
+                                    </h3>
+                                    <div className="space-y-3">
+                                        {expertise.map((item, i) => (
+                                            <div key={i} className="flex items-center justify-between p-4 rounded-xl glass hover:bg-white/5 transition-all group cursor-pointer">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                                        {item.icon}
+                                                    </div>
+                                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-white">{item.title}</span>
+                                                </div>
+                                                <ChevronRight size={16} className="text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
 
+                                <div className="p-8 rounded-3xl glass space-y-6">
+                                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">About Jason</h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        Creative Systems Designer with <span className="text-cyan-400 font-bold">21+ years</span> of experience turning complex ideas into <span className="text-white font-bold italic">seamless digital ecosystems.</span>
+                                    </p>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {['Strategy', 'Design', 'Development', 'Scalable'].map(tag => (
+                                            <div key={tag} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                                                <div className="w-1 h-1 bg-cyan-500 rounded-full"></div> {tag}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
 
-<section id="we-love-technology" class="content"> 
-  
+                        {/* Footer CTA */}
+                        <section className="mt-32 p-12 md:p-24 rounded-[3rem] glass relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
+                            <div className="relative z-10 max-w-xl">
+                                <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tight">LET'S BUILD <span className="text-cyan-400">SOMETHING</span> MEANINGFUL</h2>
+                                <p className="text-slate-400 text-lg">Ready to collaborate? Let's talk about your next project or solve a specific system problem.</p>
+                            </div>
+                            <button className="relative z-10 px-12 py-6 bg-cyan-500 text-black font-black text-xl rounded-2xl hover:bg-cyan-400 transition-all shadow-xl shadow-cyan-500/20">Start a Project</button>
+                        </section>
+                    </main>
 
-  <div class="container"> 
-    
-    
-    <div class="section-title">
-      <h1>I specialize in</h1>
-      <span class="border"></span> </div>
-   
-    
-    <ul class="technology">
-      <li class="element_fade_in"> <i class="fa fa-tasks"></i>
-        <h5>Developing Concepts</h5>
-        <p>Every great design starts with an idea/concept. An idea is what forms the fundamental parts. It’s very important that all the fundamental parts are well defined and working.</p>
-      </li>
-      <li class="element_fade_in"> <i class="fa fa-eye"></i>
-        <h5>Visualizing Ideas</h5>
-        <p>The best way to present an idea is to visualise it. It makes your idea alive. In many cases, visualisation helps users understand the story that a business wants to tell them.</p>
-      </li>
-      <li class="element_fade_in"> <i class="fa fa-desktop"></i>
-        <h5>Designing Interfaces</h5>
-        <p>My main area of expertise is UI design. Nowadays, interface is a very important part of the online product. The right UI will guarantee your success.</p>
-      </li>
-      <li class="element_fade_in"> <i class="fa fa-pencil"></i>
-        <h5>Developing Products</h5>
-        <p>Developing products is my passion. It’s more than just design. It’s about taking that design to the next level and developing the Front-End Experience. </p>
-      </li>
-    </ul>
-  </div>
-  <!--/Container --> 
-  
-</section>
+                    <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 opacity-50">
+                        <div className="text-[10px] font-bold uppercase tracking-widest">© 2024 Jason Nester | Systems Designer</div>
+                        <div className="flex gap-6">
+                            <MessageSquare size={18} className="hover:text-cyan-400 cursor-pointer" />
+                            <BehanceIcon size={18} className="hover:text-purple-400 cursor-pointer" />
+                            <ExternalLink size={18} className="hover:text-blue-400 cursor-pointer" />
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
 
-
-
-<div id="quote-parallax" class="parallax" style="background-image: url('images/separator2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20" style="height:100px;">
-<div class="parallax-overlay parallax-background-color" style="height:100px !important;">
-  <div class="container quote" style="height:100px !important;">
-    <h1 style="height:100px !important;"></h1>
-  </div>
-</div>
-</div>
-
-<!-- Portfolio 1 -->
-<section id="portfolio" class="content"> 
-  
-  <!-- Container -->
-  <div class="container portfolio-title"> 
-    
-    <!-- Section Title -->
-    <div class="section-title">
-      <h1>Planning Portfolio</h1>
-      <span class="border"></span> </div>
-    <!--/Section Title --> 
-    
-  </div>
-  <!-- Container -->
-  
-  <div class="portfolio-top"></div>
-  
-  <!-- Portfolio Plus Filters -->
-  <div class="portfolio"> 
-    
-    <!-- Portfolio Filters -->
-    
-    <!--/Portfolio Filters --> 
-    
-    <!-- Portfolio Wrap -->
-    <div id="portfolio-wrap"> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio1.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio1.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Kent Website</h4>
-            <p class="project-categories">Site Map</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio2.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio2.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">RTC Homepage</h4>
-            <p class="project-categories">Wireframes</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio3.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio3.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Kent State Subpage</h4>
-            <p class="project-categories">Wireframes</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio4.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio4.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">RTC Programs Page</h4>
-            <p class="project-categories">Wireframes</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio5.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio5.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">KSU Presenter Home</h4>
-            <p class="project-categories">Wireframes</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio6.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio6.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">NapTime iOS App</h4>
-            <p class="project-categories">Wireframe Mockup</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio7.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio7.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">RTC Programs Page</h4>
-            <p class="project-categories">Mockup</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio8.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio8.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Kent State Subpage Alt</h4>
-            <p class="project-categories">Wireframes</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  -->
-       
-   
-
-<!-- Portfolio 1 -->
-
-    
-    <!-- Section Title -->
-    <div class="section-title" style="width:100%;margin-top:50px;margin-bottom:20px;">
-      <h1>Web Design Portfolio</h1>
-      <span class="border"></span> </div>
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio9.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio9.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Next Ethics</h4>
-            <p class="project-categories">Conference Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio10.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio10.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Pixelnaut Game Studios</h4>
-            <p class="project-categories">Game Company Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio11.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio11.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Dateline Delhi</h4>
-            <p class="project-categories">Project Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio12.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio12.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Your Wellness Partners</h4>
-            <p class="project-categories">Health & Wellness Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio13.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio13.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Paris and Geneva</h4>
-            <p class="project-categories">Distance Learning Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio14.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio14.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Pike Media Group</h4>
-            <p class="project-categories">Developer Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio15.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio15.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">International Mustache</h4>
-            <p class="project-categories">Ecommerce Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPho
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio16.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio16.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">LinkVehicle</h4>
-            <p class="project-categories">Website</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio17.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio17.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">All Solutions Trikes</h4>
-            <p class="project-categories">Business Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio18.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio18.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Curriculum Leadership</h4>
-            <p class="project-categories">Online Learning Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio19.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio19.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Little Stars</h4>
-            <p class="project-categories">App Marketing Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio20.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio20.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Fashion School Cotton</h4>
-            <p class="project-categories">Learning Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio21.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio21.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">SecureIT.kent.edu</h4>
-            <p class="project-categories">Educational Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio22.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio22.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">KSU Unified Communications</h4>
-            <p class="project-categories">Informational Site</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio23.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio23.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">VitaBella Weightloss</h4>
-            <p class="project-categories">Health Website</p>
-          </div>
-        </div>
-        </a> </div>
-        <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio14.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio15.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Pike Media</h4>
-            <p class="project-categories">Website</p>
-          </div>
-        </div>
-        </a> </div>
-         <div class="section-title" style="width:100%;margin-top:50px;margin-bottom:20px;">
-      <h1>Branding Portfolio</h1>
-      <span class="border"></span> </div>
-      <!--/Portfolio Item With PrettyPho
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio25.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio25.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Train your Brain</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio26.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio26.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Imagination Experiment</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio27.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio27.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Cotton Cafe</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio28.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio28.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Lehmkade Games</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio29.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio29.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Seattle's Original</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio30.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio30.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">True Media</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio31.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio31.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Gripper Cleaner</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio32.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio32.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">KSUtube</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPho
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio33.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio33.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">LinkVehicle</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio34.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio34.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Bindolabs</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio35.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio35.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Shaker Square</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio36.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio36.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">IS Insights</h4>
-            <p class="project-categories">Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-       <div class="section-title" style="width:100%;margin-top:50px;margin-bottom:20px;">
-      <h1>Print Portfolio</h1>
-      <span class="border"></span> </div>
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio37.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio37.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">IS Trade Show</h4>
-            <p class="project-categories">Trade Booth</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio38.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio38.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Information Services</h4>
-            <p class="project-categories">Business Cards</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio39.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio39.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Top Student Tech</h4>
-            <p class="project-categories">Promotional Postcard</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio40.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio40.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Tech Help</h4>
-            <p class="project-categories">Retail Space Branding</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPho
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio41.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio41.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">IS Insights</h4>
-            <p class="project-categories">Division Magazine</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio42.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio42.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Blackboard Learn</h4>
-            <p class="project-categories">Tri-Fold Brochure</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio43.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio43.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Blackboard Learn</h4>
-            <p class="project-categories">Promo Postcard</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio44.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio44.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Business Builders</h4>
-            <p class="project-categories">Business Cards</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio45.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio45.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">SecureIT.kent.edu</h4>
-            <p class="project-categories">Poster</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-       <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio46.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio46.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Wireless Printing</h4>
-            <p class="project-categories">Poster</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item External Project  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio47.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio47.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Tech@Night</h4>
-            <p class="project-categories">Door Cards</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item External Project  --> 
-      
-      <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio48.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio48.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Tech Help</h4>
-            <p class="project-categories">Magazine Ad</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPho
-       <!-- Portfolio Item With PrettyPhoto  -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio49.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio49.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Train Your Brain</h4>
-            <p class="project-categories">Promo Signage</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item With PrettyPhoto  --> 
-      
-      <!-- Portfolio Item Video Expander  -->
-     <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio50.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio50.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Train Your Brain</h4>
-            <p class="project-categories">Foldout Schedule</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Video Expander  --> 
-      
-      <!-- Portfolio Item Normal Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio51.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio51.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">United Way</h4>
-            <p class="project-categories">Poster</p>
-          </div>
-        </div>
-        </a> </div>
-      <!--/Portfolio Item Normal Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      <div class="portfolio-item one-four   branding web">
-        <div class="portfolio-image"> <img src="images/portfolio/portfolio52.jpg" alt="Portfolio 1"/> </div>
-        <a title="JasonNester " rel="prettyPhoto[galname]" href="images/portfolio/portfolio52.jpg">
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="zoom-icon"></div>
-            <h4 class="project-name">Information Services</h4>
-            <p class="project-categories">Technology Viewbook</p>
-          </div>
-        </div>
-        </a> </div>
-      <!-- Portfolio Item FullScreen Expander --> 
-      
-      <!-- Portfolio Item FullScreen Expander -->
-      
-      <!--/Portfolio Item With PrettyPho
-       
-      
-    </div>
-    <!--/Portfolio Wrap --> 
-    
-  </div>
-  <!--/Portfolio Plus Filters -->
-  
-  <div class="portfolio-bottom"></div>
-  
-  <!-- Project Page Holder-->
-  <div id="project-page-holder">
-    <div class="clear"></div>
-    <div id="project-page-data"></div>
-  </div>
-  <!--/Project Page Holder--> 
-  
-</section>
-<!--/Portfolio --> 
-
-
-
-
-<!-- Contact Parralax -->
-<div id="contact-parallax" class="parallax" style="background-image: url('images/separator3.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
-  <div class="parallax-overlay">
-    <div class="container">
-      <div class="contact-details">
-        <div class="phone-icon"><img src="images/phone_white_big.png" alt="" /></div>
-        <div class="company-phone"><a>330-937-2206</a></div>
-        <i class="fa fa-envelope-o fa-inverse fa-2x"></i>
-        <h5 class="company-email"><a href="mailto:jayleedesigns@gmail.com">jayleedesigns@gmail.com</a></h5>
-         <a href="resume.pdf" class="newave-button large" style="size:30px;">Download My Resume</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!--
-  
-  <div class="container small-width"> 
-    
-    
-    <div class="section-title">
-      <h1>Contact</h1>
-      <span class="border"></span> </div>
-   
-    <div id="contact-formular">
-      <div id="message"></div>
-      <form method="post" action="contact.php" name="contactform" id="contactform">
-        <div class="one_half element_from_left">
-          <input name="name" type="text" id="name" size="30"  onfocus="if(this.value == 'Name') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Name'; }" value="Name" >
-          <input name="email" type="text" id="email" size="30" onfocus="if(this.value == 'E-mail') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'E-mail'; }" value="E-mail" >
-          <input name="phone" type="text" id="phone" size="30" onfocus="if(this.value == 'Phone') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Phone'; }" value="Phone" >
-        </div>
-        <div class="one_half last element_from_right">
-          <textarea name="comments" cols="40" rows="4" id="comments" onfocus="if(this.value == 'Message') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Message'; }" >Message</textarea>
-        </div>
-        <input type="submit" class="send_message" id="submit" value="Send Message" />
-      </form>
-    </div>
-   
-    
-  </div>
-  
-  
-  <div id="quote-parallax" class="parallax" style="background-image: url('images/separator2.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20" style="height:100px;">
-  <div class="parallax-overlay parallax-background-color" style="height:100px !important;">
-    <div class="container quote" style="height:100px !important;">
-      <h1 style="height:100px !important;"></h1>
-    </div>
-  </div>
-  </div> -->
-</section>
-<!--/Contact Section --> 
-
-<!-- Footer -->
-<footer>
-  <div class="container no-padding"> <a id="back-top">
-    <div id="menu_top">
-      <div id="menu_top_inside"></div>
-    </div>
-    </a>
-    <ul class="socials-icons">
-      <li><a href="https://www.facebook.com/jason.l.nester"><img src="images/facebook.png" alt="" /></a></li>
-      <li><a href="https://twitter.com/JasonNester"><img src="images/twitter.png" alt="" /></a></li>
-      <li><a href="https://plus.google.com/u/0/114430195053107901514/posts/p/pub"><img src="images/google.png" alt="" /></a></li>
-    </ul>
-    <p class="copyright">2015 &copy; Jason Nester. All rights reserved.</p>
-  </div>
-</footer>
-<!--/Footer -->
-
-
-
-
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js'></script> 
-<script src="js/jquery.sticky.js"></script> 
-<script src="js/jquery.easing-1.3.pack.js" type="text/javascript"></script> 
-<script src="js/bootstrap.min.js" type="text/javascript"></script> 
-<script src="js/jquery.parallax-1.1.3.js" type="text/javascript"></script> 
-<script src="js/appear.js" type="text/javascript" ></script> 
-<script src="js/modernizr.js" type="text/javascript"></script> 
-<script src="js/jquery.prettyPhoto.js" type="text/javascript"></script> 
-<script src="js/isotope.js" type="text/javascript"></script> 
-<script src="js/jquery.bxslider.min.js"></script> 
-<!-- <script type="text/javascript" src="js/jquery.tweet.js"></script> --> 
-<script src="js/jquery.cycle.all.js" type="text/javascript" charset="utf-8"></script> 
-<script src="js/jquery.maximage.js" type="text/javascript" charset="utf-8"></script> 
-<script src="js/sscr.js"></script> 
-<script src="js/skrollr.js"></script> 
-<script src="js/jquery.jigowatt.js"></script> 
-<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
-<script src="js/scripts.js" type="text/javascript"></script> 
-<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'YOUR GOOGLE ANALYTICS CODE']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
-<!-- Localized -->
+

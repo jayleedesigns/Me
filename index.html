@@ -8,13 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; background:#020626; color:#fff; }
-        .glass { background:rgba(2,6,38,.88); backdrop-filter: blur(16px); border-bottom:1px solid rgba(255,255,255,.08); }
+        .glass { background:rgba(2,6,38,.78); backdrop-filter: blur(16px); border-bottom:1px solid rgba(255,255,255,.08); }
         .btn-magic { background: linear-gradient(90deg,#00f2ff,#bc13fe); transition: all .3s ease; }
         .btn-magic:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,242,255,.35); }
         .text-gradient { background:linear-gradient(90deg,#00f2ff,#fff,#bc13fe); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero-orb { position:absolute; filter: blur(90px); border-radius:999px; opacity:.45; pointer-events:none; }
+        .glass-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); }
         .portfolio-card { background-size:cover; background-position:center; min-height:460px; }
         .portfolio-card::before { content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(2,6,38,.95),rgba(2,6,38,.25)); }
         .portfolio-card.active { outline:2px solid rgba(0,242,255,.8); outline-offset:-2px; }
+        .portfolio-card:hover { transform: translateY(-6px); transition: transform .35s ease, box-shadow .35s ease; box-shadow: 0 20px 40px rgba(0,0,0,.35); }
         .slide-swap { animation: fadeSlide .35s ease; }
         @keyframes fadeSlide { from { opacity:0; transform:translateY(14px);} to {opacity:1; transform:none;} }
         .input-error { border-color: rgba(251,113,133,.9)!important; }
@@ -22,7 +25,10 @@
 </head>
 <body>
     <nav class="fixed top-0 w-full z-50 glass px-6 md:px-12 py-4 flex items-center justify-between">
-        <a href="#home"><img src="images/logo.png" alt="Gemini Creative logo" class="h-10 md:h-12 w-auto"></a>
+        <a href="#home" class="flex items-center gap-3">
+            <img src="images/geminicreative.png" onerror="this.onerror=null;this.src='images/logo.png';" alt="Gemini Creative logo" class="h-10 w-10 md:h-12 md:w-12 object-contain">
+            <span class="font-black tracking-[0.16em] text-sm md:text-base">GEMINI CREATIVE</span>
+        </a>
         <div class="hidden md:flex gap-8 text-xs font-black tracking-[0.2em]">
             <a href="#home" class="text-slate-400 hover:text-white">HOME</a>
             <a href="#work" class="text-slate-400 hover:text-white">WORK</a>
@@ -41,9 +47,12 @@
         <a class="block" href="portal.html">CLIENT PORTAL</a>
     </div>
 
-    <section id="home" class="min-h-screen pt-28 pb-20 px-6 md:px-12 bg-cover bg-center" style="background-image:linear-gradient(rgba(2,6,38,.65),rgba(2,6,38,.9)),url('images/separator1.jpg');">
+    <section id="home" class="relative min-h-screen pt-28 pb-20 px-6 md:px-12 bg-cover bg-center overflow-hidden" style="background-image:linear-gradient(rgba(2,6,38,.62),rgba(2,6,38,.9)),url('images/separator2.jpg');">
+        <div class="hero-orb w-[340px] h-[340px] bg-[#00f2ff] -top-16 -left-10"></div>
+        <div class="hero-orb w-[360px] h-[360px] bg-[#bc13fe] -bottom-20 right-0"></div>
         <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7">
+                <img src="images/geminicreative.png" onerror="this.onerror=null;this.src='images/logo.png';" alt="Gemini mark" class="h-14 w-14 mb-5 object-contain">
                 <p class="text-[10px] tracking-[0.3em] text-[#00f2ff] font-black uppercase mb-5">Newton Falls, Ohio</p>
                 <h1 class="text-5xl md:text-8xl font-black leading-[.88] uppercase mb-6">Designing Dreams <span class="text-gradient">Pixels & Magic</span></h1>
                 <p class="text-slate-300 max-w-xl mb-8">Brand-first design studio building websites, visual identities, campaigns, and content systems that convert.</p>
@@ -53,7 +62,7 @@
                 </div>
             </div>
             <div class="lg:col-span-5">
-                <div class="rounded-3xl border border-white/10 bg-black/35 p-6">
+                <div class="rounded-3xl glass-card p-6">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="font-black tracking-[0.2em] text-xs text-[#00f2ff]">FEATURED VIDEO</h2>
                         <span class="text-[10px] text-slate-400 uppercase">Placeholder</span>
@@ -62,6 +71,10 @@
                         <img src="images/video-placeholder.jpg" alt="Video placeholder" class="w-full h-full object-cover opacity-75">
                     </div>
                     <p class="mt-4 text-xs text-slate-400">Drop your embedded reel/video here (YouTube, Vimeo, or hosted MP4).</p>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <img src="images/projects/3.png" alt="Gemini sample work 1" class="rounded-2xl border border-white/10">
+                    <img src="images/projects/6.png" alt="Gemini sample work 2" class="rounded-2xl border border-white/10">
                 </div>
             </div>
         </div>
@@ -78,25 +91,25 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <button type="button" data-project="cobras" class="portfolio-card relative rounded-[2rem] p-8 text-left active" style="background-image:url('images/portfolio/portfolio44.jpg')">
+                <button type="button" data-project="businessbuilder" class="portfolio-card relative rounded-[2rem] p-8 text-left active" style="background-image:url('images/portfolio/portfolio44.jpg')">
                     <div class="relative z-10 pt-44">
-                        <p class="text-[10px] font-black tracking-[0.2em] text-[#bc13fe]">SPORTS IDENTITY</p>
-                        <h3 class="text-3xl font-black mt-3">East River Cobras</h3>
-                        <p class="text-sm text-slate-300 mt-3">Mascot identity + merch + social launch.</p>
+                        <p class="text-[10px] font-black tracking-[0.2em] text-[#bc13fe]">PRINT BRANDING</p>
+                        <h3 class="text-3xl font-black mt-3">BusinessBuilder Resources</h3>
+                        <p class="text-sm text-slate-300 mt-3">Business card system + brand collateral suite.</p>
                     </div>
                 </button>
-                <button type="button" data-project="oncall" class="portfolio-card relative rounded-[2rem] p-8 text-left" style="background-image:url('images/portfolio/portfolio40.jpg')">
+                <button type="button" data-project="techhelp" class="portfolio-card relative rounded-[2rem] p-8 text-left" style="background-image:url('images/portfolio/portfolio40.jpg')">
                     <div class="relative z-10 pt-44">
-                        <p class="text-[10px] font-black tracking-[0.2em] text-[#00f2ff]">SERVICE BRANDING</p>
-                        <h3 class="text-3xl font-black mt-3">OnCall Services</h3>
-                        <p class="text-sm text-slate-300 mt-3">Fleet visuals + conversion website direction.</p>
+                        <p class="text-[10px] font-black tracking-[0.2em] text-[#00f2ff]">ENVIRONMENTAL DESIGN</p>
+                        <h3 class="text-3xl font-black mt-3">Tech Help Service Center</h3>
+                        <p class="text-sm text-slate-300 mt-3">Wall graphics, service menus, and in-store signage.</p>
                     </div>
                 </button>
-                <button type="button" data-project="sams" class="portfolio-card relative rounded-[2rem] p-8 text-left" style="background-image:url('images/portfolio/portfolio45.jpg')">
+                <button type="button" data-project="secureit" class="portfolio-card relative rounded-[2rem] p-8 text-left" style="background-image:url('images/portfolio/portfolio45.jpg')">
                     <div class="relative z-10 pt-44">
-                        <p class="text-[10px] font-black tracking-[0.2em] text-[#bc13fe]">RETAIL REFRESH</p>
-                        <h3 class="text-3xl font-black mt-3">Sam's Pizza</h3>
-                        <p class="text-sm text-slate-300 mt-3">Signage, menu, and local campaign assets.</p>
+                        <p class="text-[10px] font-black tracking-[0.2em] text-[#bc13fe]">CAMPAIGN CREATIVE</p>
+                        <h3 class="text-3xl font-black mt-3">SecureIT Awareness</h3>
+                        <p class="text-sm text-slate-300 mt-3">Security awareness poster campaign and messaging.</p>
                     </div>
                 </button>
             </div>
@@ -104,9 +117,9 @@
             <div id="project-panel" class="mt-8 rounded-[2rem] border border-white/10 bg-black/35 p-8 md:p-10">
                 <div id="panel-content" class="slide-swap grid lg:grid-cols-12 gap-8">
                     <div class="lg:col-span-4">
-                        <p id="panel-meta" class="text-xs tracking-[0.2em] font-black text-[#00f2ff] mb-3 uppercase">Sports Identity</p>
-                        <h3 id="panel-title" class="text-4xl font-black uppercase mb-4">East River Cobras</h3>
-                        <p id="panel-blurb" class="text-slate-300 mb-6">A full identity sprint built to electrify fan engagement across every game-day touchpoint.</p>
+                        <p id="panel-meta" class="text-xs tracking-[0.2em] font-black text-[#00f2ff] mb-3 uppercase">Print Branding</p>
+                        <h3 id="panel-title" class="text-4xl font-black uppercase mb-4">BusinessBuilder Resources</h3>
+                        <p id="panel-blurb" class="text-slate-300 mb-6">A polished print identity system designed to elevate first impressions and brand consistency.</p>
                         <ul id="panel-services" class="flex flex-wrap gap-2"></ul>
                     </div>
                     <div class="lg:col-span-8 space-y-5">
@@ -148,7 +161,10 @@
 
     <footer class="py-14 px-6 md:px-12 bg-black/70 border-t border-white/10">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
-            <img src="images/logo.png" alt="Gemini Creative logo" class="h-10 w-auto">
+            <div class="flex items-center gap-3">
+                <img src="images/geminicreative.png" onerror="this.onerror=null;this.src='images/logo.png';" alt="Gemini Creative logo" class="h-10 w-10 object-contain">
+                <span class="font-black tracking-[0.14em] text-sm">GEMINI CREATIVE</span>
+            </div>
             <div class="flex gap-6 text-sm text-slate-400">
                 <a href="services.html">Services</a>
                 <a href="case-studies.html">Case Studies</a>
@@ -159,32 +175,32 @@
 
     <script>
         const projects = {
-            cobras: {
-                meta: 'Sports Identity',
-                title: 'East River Cobras',
-                blurb: 'A full identity sprint built to electrify fan engagement across every game-day touchpoint.',
-                services: ['Brand Strategy', 'Mascot System', 'Merch Templates', 'Social Launch'],
-                challenge: 'The team had inconsistent visuals across jerseys, digital promo, and sponsorship placements that diluted fan recognition.',
-                outcome: 'After launch, campaign assets delivered stronger match-week engagement and cleaner sponsor integration.',
-                snapshot: 'We built a modern cobra mark suite, typography rules, and a rollout toolkit for print, digital, and stadium environments.'
+            businessbuilder: {
+                meta: 'Print Branding',
+                title: 'BusinessBuilder Resources',
+                blurb: 'A polished print identity system designed to elevate first impressions and brand consistency.',
+                services: ['Visual Identity', 'Business Cards', 'Print Production', 'Brand Standards'],
+                challenge: 'The company needed card designs that felt premium while keeping contact details highly legible in day-to-day networking.',
+                outcome: 'The new collateral delivered a cleaner, more modern look and improved consistency across card, email, and presentation touchpoints.',
+                snapshot: 'We explored multiple layout directions, finalized a bold geometric style, and delivered production-ready files with usage guidelines.'
             },
-            oncall: {
-                meta: 'Service Branding',
-                title: 'OnCall Services',
-                blurb: 'A reliability-first visual system for fleet, web, and regional ad campaigns.',
-                services: ['Logo Suite', 'Fleet Graphics', 'Web Design', 'Sales Sheets'],
-                challenge: 'OnCall needed a premium look that could scale from truck wraps to landing pages while staying instantly readable.',
-                outcome: 'The refresh improved visual consistency and gave the sales team stronger brand credibility in proposals.',
-                snapshot: 'Deliverables included a responsive logo family, fleet standards, and conversion-focused website design comps.'
+            techhelp: {
+                meta: 'Environmental Design',
+                title: 'Tech Help Service Center',
+                blurb: 'A wayfinding and service-menu refresh for a busy customer support desk environment.',
+                services: ['Signage Design', 'Information Hierarchy', 'Counter Graphics', 'Print Install Specs'],
+                challenge: 'Customers were unsure where to go and which service tier applied to their issue, causing slow check-in and repeat questions.',
+                outcome: 'The updated signage system improved clarity at point-of-service and made pricing/service tiers easier to understand at a glance.',
+                snapshot: 'We redesigned the visual hierarchy, simplified category labels, and prepared large-format files for fast in-store deployment.'
             },
-            sams: {
-                meta: 'Retail Refresh',
-                title: "Sam's Pizza",
-                blurb: 'A nostalgic-but-modern brand refresh for a local staple.',
-                services: ['Logo Refresh', 'Menu Design', 'Signage', 'Social Graphics'],
-                challenge: 'The legacy look had equity but lacked consistency and readability across print and social placements.',
-                outcome: 'The updated brand improved menu clarity and made promotions more cohesive across channels.',
-                snapshot: 'We refreshed typography, color hierarchy, and produced a practical asset pack for in-store and online promotion.'
+            secureit: {
+                meta: 'Campaign Creative',
+                title: 'SecureIT Awareness',
+                blurb: 'An internal awareness campaign focused on cyber-safety messaging and campus-wide visibility.',
+                services: ['Campaign Art Direction', 'Poster Design', 'Copy Framing', 'Rollout Templates'],
+                challenge: 'The campaign needed to attract attention quickly while communicating a clear call-to-action in high-traffic locations.',
+                outcome: 'The final concept increased campaign visibility and gave the organization reusable templates for future awareness pushes.',
+                snapshot: 'We built a bold, high-contrast visual style with concise messaging blocks and production-ready print assets.'
             }
         };
 
@@ -206,7 +222,7 @@
         }
 
         document.querySelectorAll('[data-project]').forEach(btn => btn.addEventListener('click', () => updatePanel(btn.dataset.project)));
-        updatePanel('cobras');
+        updatePanel('businessbuilder');
 
         function setStatus(msg, type='neutral') {
             const el = document.getElementById('form-status');

@@ -49,6 +49,20 @@
         .project-card:hover img {
             transform: scale(1.05);
         }
+        .project-card-active {
+            outline: 2px solid rgba(0, 242, 255, 0.75);
+            outline-offset: -2px;
+        }
+        .project-panel {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.55s ease, opacity 0.35s ease;
+        }
+        .project-panel.open {
+            max-height: 1000px;
+            opacity: 1;
+        }
 
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -74,6 +88,9 @@
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
+        .input-error {
+            border-color: rgba(248, 113, 113, 0.9) !important;
+        }
     </style>
 </head>
 <body class="custom-scrollbar">
@@ -81,6 +98,8 @@
     <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-[100] glass px-6 py-4 md:px-12 flex justify-between items-center">
         <a href="#home" class="flex items-center gap-3 group no-underline">
+            <img src="images/brands/gemini-mark.svg" alt="Gemini Creative Mark" class="w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:rotate-12">
+            <img src="images/brands/gemini-wordmark.svg" alt="Gemini Creative" class="h-7 md:h-8 w-auto">
             <svg viewBox="0 0 100 100" class="w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:rotate-12" fill="none">
                 <path d="M50 5L58 42L95 50L58 58L50 95L42 58L5 50L42 42L50 5Z" fill="#00f2ff" fill-opacity="0.85"/>
                 <path d="M75 15L78 28L91 31L78 34L75 47L72 34L59 31L72 28L75 15Z" fill="#bc13fe"/>
@@ -220,6 +239,41 @@
                     </div>
                 </div>
 
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">CREATIVITY WITH<br><span class="text-[#00f2ff]">PURPOSE</span></h2>
+                </div>
+                <div class="col-span-12 md:col-span-4 md:text-right">
+                    <p class="text-slate-500 max-w-xs md:ml-auto text-sm font-medium leading-relaxed">Strategic thinking meets technical wizardry to build brands that leave a mark.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5 overflow-hidden rounded-[2rem]">
+                <!-- Service 1 -->
+                <div class="p-12 bg-[#020626] group hover:bg-white/[0.02] transition-colors">
+                    <div class="text-[#00f2ff] mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L10 21.657" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase mb-4">Brand Identity</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Memorable visual identities that reflect your core values — logos, color systems, and guides.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-white/5 rounded-lg text-[9px] font-black tracking-widest text-slate-400">LOGOS</span>
+                        <span class="px-3 py-1.5 bg-white/5 rounded-lg text-[9px] font-black tracking-widest text-slate-400">GUIDELINES</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-12 bg-[#020626] group hover:bg-white/[0.02] transition-colors">
+                    <div class="text-[#bc13fe] mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase mb-4">Web Engineering</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Stunning, high-performance websites built to convert visitors into loyal customers.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-white/5 rounded-lg text-[9px] font-black tracking-widest text-slate-400">UI/UX</span>
+                        <span class="px-3 py-1.5 bg-white/5 rounded-lg text-[9px] font-black tracking-widest text-slate-400">NEXT.JS</span>
+                    </div>
+                </div>
+
                 <!-- Service 3 -->
                 <div class="p-12 bg-[#020626] group hover:bg-white/[0.02] transition-colors">
                     <div class="text-[#00f2ff] mb-8">
@@ -315,6 +369,10 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Project 1 -->
+                <button type="button" data-project-trigger="cobras" class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden project-card cursor-pointer text-left">
+                    <img src="https://preview.webstudio.ai/cgi/image/dev/042a61c0dd58ef270b524c48752047e35895fa3efd632f5874d8ce76c5d1de11.png?width=1088&height=896&format=auto" class="w-full h-full object-cover transition-transform duration-700" alt="East River Cobras">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020626] via-[#020626]/20 to-transparent"></div>
+                    <img src="images/brands/east-river-cobras-logo.svg" alt="East River Cobras logo" class="absolute top-8 left-8 w-20 h-20 rounded-2xl border border-white/15 bg-black/30 p-2 backdrop-blur-md shadow-lg">
                 <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden project-card cursor-pointer">
                     <img src="https://preview.webstudio.ai/cgi/image/dev/042a61c0dd58ef270b524c48752047e35895fa3efd632f5874d8ce76c5d1de11.png?width=1088&height=896&format=auto" class="w-full h-full object-cover transition-transform duration-700" alt="East River Cobras">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#020626] via-[#020626]/20 to-transparent"></div>
@@ -324,6 +382,240 @@
                         <p class="text-sm text-slate-400 font-medium mb-8">Bold mascot identity for the 2025 season.</p>
                         <div class="flex gap-2">
                             <span class="px-4 py-2 bg-white/10 rounded-xl text-[9px] font-black tracking-widest">BRANDING</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Project 2 -->
+                <button type="button" data-project-trigger="oncall" class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden project-card cursor-pointer text-left">
+                    <img src="https://preview.webstudio.ai/cgi/image/dev/90155a3ee15bedf5026c7d1c7fabb54d57f381bb65ebe9938fe471805fb5d5d2.png?width=1088&height=896&format=auto" class="w-full h-full object-cover transition-transform duration-700" alt="OnCall Services">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020626] via-[#020626]/20 to-transparent"></div>
+                    <img src="images/brands/oncall-services-logo.svg" alt="OnCall Services logo" class="absolute top-8 left-8 w-20 h-20 rounded-2xl border border-white/15 bg-black/30 p-2 backdrop-blur-md shadow-lg">
+                    <div class="absolute bottom-12 left-12 right-12">
+                        <span class="text-[10px] font-black tracking-widest text-[#00f2ff] mb-3 block uppercase">Service Branding</span>
+                        <h3 class="text-4xl font-black mb-4 uppercase">OnCall Services</h3>
+                        <p class="text-sm text-slate-400 font-medium mb-8">Redefining visual speed and professional reliability.</p>
+                        <div class="flex gap-2">
+                            <span class="px-4 py-2 bg-white/10 rounded-xl text-[9px] font-black tracking-widest">WEB + FLEET</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Project 3 -->
+                <button type="button" data-project-trigger="sams" class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden project-card cursor-pointer text-left">
+                    <img src="https://preview.webstudio.ai/cgi/image/dev/fe490c2f8e04efd1d4f95c485eaabd70ff9cd02e450854711360c965ad182cad.png?width=1088&height=896&format=auto" class="w-full h-full object-cover transition-transform duration-700" alt="Sam's Pizza">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020626] via-[#020626]/20 to-transparent"></div>
+                    <img src="images/brands/sams-pizza-logo.svg" alt="Sam's Pizza logo" class="absolute top-8 left-8 w-20 h-20 rounded-2xl border border-white/15 bg-black/30 p-2 backdrop-blur-md shadow-lg">
+                    <div class="absolute bottom-12 left-12 right-12">
+                        <span class="text-[10px] font-black tracking-widest text-[#bc13fe] mb-3 block uppercase">Retail Identity</span>
+                        <h3 class="text-4xl font-black mb-4 uppercase">Sam's Pizza</h3>
+                        <p class="text-sm text-slate-400 font-medium mb-8">Retro-inspired brand refresh for a local institution.</p>
+                        <div class="flex gap-2">
+                            <span class="px-4 py-2 bg-white/10 rounded-xl text-[9px] font-black tracking-widest">SIGNAGE</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Next CTA -->
+                <div class="flex flex-col items-center justify-center p-12 border-4 border-dashed border-white/5 rounded-[2.5rem] bg-white/[0.01] hover:bg-white/[0.03] transition-all group cursor-pointer">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[#00f2ff] to-[#bc13fe] flex items-center justify-center mb-8 shadow-2xl group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                    </div>
+                    <h3 class="text-3xl font-black uppercase mb-4 text-center">YOUR PROJECT NEXT?</h3>
+                    <p class="text-slate-600 font-black text-[10px] tracking-[0.2em] uppercase">Let's make magic together</p>
+                </div>
+            </div>
+            <div id="project-panel" class="project-panel mt-10 border border-white/10 rounded-[2rem] bg-black/35 backdrop-blur-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 md:p-12">
+                    <div class="lg:col-span-4">
+                        <img id="panel-logo" src="images/brands/east-river-cobras-logo.svg" alt="Project logo" class="w-24 h-24 rounded-2xl border border-white/10 bg-black/40 p-2 mb-6">
+                        <div id="panel-meta" class="text-[10px] tracking-[0.24em] text-[#00f2ff] font-black uppercase mb-3">Sports Identity</div>
+                        <h3 id="panel-title" class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">East River Cobras</h3>
+                        <p id="panel-blurb" class="text-slate-300 text-sm leading-relaxed mb-6">A seasonal identity refresh built to energize fan engagement across social, merch, and stadium visuals.</p>
+                        <ul id="panel-services" class="flex flex-wrap gap-2"></ul>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                <h4 class="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3 font-black">The Challenge</h4>
+                                <p id="panel-challenge" class="text-sm text-slate-200 leading-relaxed">The client needed a modern mascot system that could scale from game-day social posts to jersey applications without losing impact.</p>
+                            </div>
+                            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                <h4 class="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3 font-black">Outcome</h4>
+                                <p id="panel-outcome" class="text-sm text-slate-200 leading-relaxed">Launch assets drove a measurable uptick in fan interactions and increased online merchandise click-through in the first month.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                            <h4 class="text-[10px] tracking-[0.2em] text-slate-400 uppercase mb-3 font-black">Project Snapshot</h4>
+                            <p id="panel-snapshot" class="text-sm text-slate-300 leading-relaxed">We mapped key audience personas, created three visual routes, and refined the selected direction into a complete rollout toolkit with templates and launch guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-32 px-6 md:px-12 bg-[#020626]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+            <div class="lg:col-span-6">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-px w-10 bg-[#bc13fe]"></div>
+                    <span class="text-[10px] font-black tracking-[0.3em] text-[#bc13fe]">OUR STORY</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-10">NEWTON FALLS'<br>CREATIVE LAB</h2>
+                <p class="text-lg text-slate-300 font-medium mb-8 leading-relaxed">Based in the heart of Newton Falls, Gemini Creative is a lab dedicated to empowering local businesses through strategy-led design.</p>
+                <p class="text-slate-500 text-sm mb-12 leading-relaxed">We believe every brand has a spark of magic waiting to be unleashed. Our team combines bold execution with technical precision to craft identities that make a real difference in the digital world.</p>
+
+                <div class="grid grid-cols-2 gap-12 border-t border-white/10 pt-12">
+                    <div>
+                        <div class="text-5xl font-black text-[#00f2ff] mb-2">50+</div>
+                        <div class="text-[9px] font-black tracking-widest text-slate-600">DELIVERED</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-black text-[#bc13fe] mb-2">100%</div>
+                        <div class="text-[9px] font-black tracking-widest text-slate-600">GUARANTEED</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-6 relative">
+                <div class="absolute -top-10 -left-10 w-64 h-64 bg-[#bc13fe]/10 blur-[80px] rounded-full"></div>
+                <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 aspect-square">
+                    <img src="https://preview.webstudio.ai/cgi/image/dev/5c01bb48815d9a9407923ca895589d60151458299e9b2844be68511271982d94.png?width=1024&height=1024&format=auto" class="w-full h-full object-cover" alt="Creative Lab">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#00f2ff]/20 to-[#bc13fe]/20 mix-blend-screen"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-32 px-6 md:px-12 bg-[#01041a]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-12 gap-8 mb-20 items-end">
+                <div class="col-span-12 md:col-span-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="h-px w-10 bg-[#00f2ff]"></div>
+                        <span class="text-[10px] font-black tracking-[0.3em] text-[#00f2ff]">GET IN TOUCH</span>
+                    </div>
+                    <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">LET'S BUILD<br><span class="text-[#bc13fe] italic">GREATNESS.</span></h2>
+                </div>
+                <div class="col-span-12 md:col-span-4 text-slate-500 font-bold space-y-3">
+                    <div class="flex items-center gap-4 text-sm"><span class="w-1.5 h-1.5 rounded-full bg-[#00f2ff]"></span>Newton Falls, OH</div>
+                    <div class="flex items-center gap-4 text-sm"><span class="w-1.5 h-1.5 rounded-full bg-[#bc13fe]"></span>234.296.1556</div>
+                </div>
+            </div>
+
+            <div class="bg-white/5 p-12 rounded-[3rem] border border-white/5 relative overflow-hidden">
+                <form id="contact-form" class="relative z-10 space-y-6" onsubmit="handleContactSubmit(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="firstName" id="first-name" placeholder="First Name" required class="bg-black/40 border border-white/10 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff] transition-all">
+                        <input type="text" name="lastName" id="last-name" placeholder="Last Name" required class="bg-black/40 border border-white/10 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff] transition-all">
+                    </div>
+                    <input type="email" name="email" id="contact-email" placeholder="Email Address" required class="w-full bg-black/40 border border-white/10 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff] transition-all">
+                    <textarea rows="4" name="message" id="contact-message" placeholder="How can we help?" required class="w-full bg-black/40 border border-white/10 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff] transition-all"></textarea>
+                    <p id="form-status" class="text-xs font-bold text-slate-400 hidden"></p>
+                    <button id="contact-submit" type="submit" class="w-full btn-magic py-6 rounded-2xl font-black tracking-[0.2em] text-sm uppercase text-white shadow-2xl">SEND MESSAGE ✦</button>
+                </form>
+                <div id="form-success" class="hidden text-center py-16">
+                    <div class="w-20 h-20 rounded-full bg-[#00f2ff]/20 flex items-center justify-center mx-auto mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#00f2ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <h4 class="text-3xl font-black uppercase mb-4">MESSAGE RECEIVED</h4>
+                    <p id="form-success-text" class="text-slate-500 font-medium">The wizards are reviewing your request.</p>
+                    <button type="button" onclick="resetContactForm()" class="mt-8 border border-white/10 px-6 py-3 rounded-xl text-xs tracking-[0.15em] font-black hover:bg-white/5 transition-colors">SEND ANOTHER MESSAGE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#00020f] pt-32 pb-12 px-6 md:px-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-3 mb-8">
+                    <img src="images/brands/gemini-mark.svg" alt="Gemini Creative Mark" class="w-8 h-8">
+                    <img src="images/brands/gemini-wordmark.svg" alt="Gemini Creative" class="h-7 w-auto">
+                </div>
+                <p class="text-sm text-slate-600 font-medium leading-relaxed">Newton Falls' premier creative studio for ambitious brands. Strategy meets soul.</p>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black tracking-[0.3em] text-[#00f2ff] mb-8 uppercase">Services</h5>
+                <ul class="text-sm text-slate-500 font-medium space-y-4">
+                    <li>Branding</li>
+                    <li>Web Dev</li>
+                    <li>Multimedia</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black tracking-[0.3em] text-[#bc13fe] mb-8 uppercase">Connect</h5>
+                <ul class="text-sm text-slate-500 font-medium space-y-4">
+                    <li>Instagram</li>
+                    <li>LinkedIn</li>
+                    <li>Portal</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black tracking-[0.3em] text-white mb-8 uppercase">Legal</h5>
+                <ul class="text-sm text-slate-500 font-medium space-y-4">
+                    <li>Privacy Policy</li>
+                    <li>Terms of Use</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-10 border-t border-white/5 text-center text-[10px] font-black text-slate-700 tracking-[0.3em]">
+            © 2025 GEMINI CREATIVE STUDIOS. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="login-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-black/85 backdrop-blur-sm">
+        <div class="bg-[#020626] border border-white/10 p-12 rounded-[3rem] w-full max-w-md relative">
+            <button onclick="toggleModal('login-modal')" class="absolute top-10 right-10 text-slate-500 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <h2 class="text-4xl font-black uppercase mb-8">CLIENT ACCESS</h2>
+            <div class="space-y-4">
+                <input type="email" placeholder="Email" class="w-full bg-white/5 border border-white/5 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff]">
+                <input type="password" placeholder="Password" class="w-full bg-white/5 border border-white/5 rounded-2xl px-8 py-5 text-sm font-bold focus:outline-none focus:border-[#00f2ff]">
+                <button class="w-full btn-magic py-5 rounded-2xl font-black tracking-widest text-xs uppercase shadow-xl mt-4">ENTER PORTAL</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const portfolioProjects = {
+            cobras: {
+                meta: 'Sports Identity',
+                title: 'East River Cobras',
+                logo: 'images/brands/east-river-cobras-logo.svg',
+                blurb: 'A bold mascot system built to electrify game day and unify every fan touchpoint.',
+                services: ['Brand Strategy', 'Mascot Design', 'Merch Templates', 'Social Launch Kit'],
+                challenge: 'The club had fragmented visuals across uniforms, social media, and sponsor graphics, resulting in low brand recognition.',
+                outcome: 'Within 30 days of launch, the team reported stronger social engagement and a measurable increase in online merch interest.',
+                snapshot: 'We ran audience interviews, defined three visual directions, and refined one into a full identity package with lockups, typography, and promo templates.'
+            },
+            oncall: {
+                meta: 'Service Branding',
+                title: 'OnCall Services',
+                logo: 'images/brands/oncall-services-logo.svg',
+                blurb: 'A speed-first service identity that balances reliability with modern utility branding.',
+                services: ['Logo System', 'Fleet Graphics', 'Website UI', 'Sales Collateral'],
+                challenge: 'OnCall needed a professional, scalable identity that could work on trucks, uniforms, and digital campaigns.',
+                outcome: 'The rollout gave the company a cohesive look across its fleet and helped sales staff deliver a more premium first impression.',
+                snapshot: 'We designed responsive logo lockups, created branded vehicle graphics, and delivered a conversion-focused website style system for future pages.'
+            },
+            sams: {
+                meta: 'Retail Identity',
+                title: "Sam's Pizza",
+                logo: 'images/brands/sams-pizza-logo.svg',
+                blurb: 'A nostalgic neighborhood favorite refreshed with signage-ready clarity and social-friendly assets.',
+                services: ['Brand Refresh', 'Menu Design', 'Window Signage', 'Content Templates'],
+                challenge: 'The existing brand had local recognition but lacked consistency across menus, social graphics, and storefront materials.',
+                outcome: 'The refreshed identity improved readability, strengthened local recall, and gave the business a cleaner promotional toolkit.',
+                snapshot: 'We preserved the recognizable character of the original mark, modernized the type treatment, and produced ready-to-print menu and promo assets.'
+            }
+        };
+
                         </div>
                     </div>
                 </div>
@@ -514,6 +806,119 @@
             modal.classList.toggle('flex');
         }
 
+        function updateProjectPanel(projectKey) {
+            const project = portfolioProjects[projectKey];
+            if (!project) return;
+
+            document.getElementById('panel-logo').src = project.logo;
+            document.getElementById('panel-meta').textContent = project.meta;
+            document.getElementById('panel-title').textContent = project.title;
+            document.getElementById('panel-blurb').textContent = project.blurb;
+            document.getElementById('panel-challenge').textContent = project.challenge;
+            document.getElementById('panel-outcome').textContent = project.outcome;
+            document.getElementById('panel-snapshot').textContent = project.snapshot;
+
+            const servicesEl = document.getElementById('panel-services');
+            servicesEl.innerHTML = project.services
+                .map((service) => `<li class="px-3 py-1.5 bg-white/5 rounded-lg text-[10px] font-black tracking-widest text-slate-300 uppercase">${service}</li>`)
+                .join('');
+        }
+
+        function bindProjectCards() {
+            const panel = document.getElementById('project-panel');
+            const triggers = Array.from(document.querySelectorAll('[data-project-trigger]'));
+
+            triggers.forEach((trigger) => {
+                trigger.addEventListener('click', () => {
+                    const projectKey = trigger.getAttribute('data-project-trigger');
+                    updateProjectPanel(projectKey);
+                    triggers.forEach((item) => item.classList.remove('project-card-active'));
+                    trigger.classList.add('project-card-active');
+                    panel.classList.add('open');
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+
+            if (triggers[0]) {
+                triggers[0].classList.add('project-card-active');
+                panel.classList.add('open');
+                updateProjectPanel(triggers[0].getAttribute('data-project-trigger'));
+            }
+        }
+
+        function setFormStatus(message, tone = 'neutral') {
+            const status = document.getElementById('form-status');
+            status.classList.remove('hidden', 'text-emerald-300', 'text-rose-300', 'text-slate-400');
+            status.textContent = message;
+
+            if (tone === 'success') status.classList.add('text-emerald-300');
+            else if (tone === 'error') status.classList.add('text-rose-300');
+            else status.classList.add('text-slate-400');
+        }
+
+        function resetContactForm() {
+            const form = document.getElementById('contact-form');
+            const success = document.getElementById('form-success');
+            const status = document.getElementById('form-status');
+            form.reset();
+            form.classList.remove('hidden');
+            success.classList.add('hidden');
+            status.classList.add('hidden');
+            document.querySelectorAll('#contact-form input, #contact-form textarea').forEach((field) => field.classList.remove('input-error'));
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            const submit = document.getElementById('contact-submit');
+            const success = document.getElementById('form-success');
+            const successText = document.getElementById('form-success-text');
+
+            const requiredFields = ['first-name', 'last-name', 'contact-email', 'contact-message']
+                .map((id) => document.getElementById(id));
+
+            let hasError = false;
+            requiredFields.forEach((field) => {
+                const empty = !field.value.trim();
+                field.classList.toggle('input-error', empty);
+                if (empty) hasError = true;
+            });
+
+            if (hasError) {
+                setFormStatus('Please complete every field so we can route your request correctly.', 'error');
+                return;
+            }
+
+            submit.disabled = true;
+            submit.textContent = 'SENDING...';
+            setFormStatus('Submitting your message to the Gemini inbox...', 'neutral');
+
+            const payload = {
+                firstName: document.getElementById('first-name').value.trim(),
+                lastName: document.getElementById('last-name').value.trim(),
+                email: document.getElementById('contact-email').value.trim(),
+                message: document.getElementById('contact-message').value.trim(),
+                submittedAt: new Date().toISOString()
+            };
+
+            setTimeout(() => {
+                try {
+                    const existing = JSON.parse(localStorage.getItem('geminiContactSubmissions') || '[]');
+                    existing.push(payload);
+                    localStorage.setItem('geminiContactSubmissions', JSON.stringify(existing));
+                } catch (err) {
+                    console.warn('localStorage unavailable; skipping persistence.', err);
+                }
+
+                const ref = `GC-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(Math.random() * 900 + 100)}`;
+                successText.textContent = `Thanks ${payload.firstName}! Your message is queued with reference ${ref}. We'll reply to ${payload.email} shortly.`;
+
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+                submit.disabled = false;
+                submit.textContent = 'SEND MESSAGE ✦';
+                setFormStatus('', 'neutral');
+            }, 800);
         function handleContactSubmit(e) {
             e.preventDefault();
             document.getElementById('contact-form').classList.add('hidden');

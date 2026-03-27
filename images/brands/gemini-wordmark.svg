@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 220" role="img" aria-label="Gemini Creative wordmark">
+  <rect width="980" height="220" fill="none"/>
+  <g transform="translate(14,18)">
+    <path d="M8 130 C60 116 92 92 132 40 L146 54 C108 114 78 140 18 156 Z" fill="#25e6f8"/>
+    <path d="M112 0 L152 82 L132 102 L104 40 L84 60 L70 48 Z" fill="#25e6f8"/>
+    <path d="M106 186 L78 118 L96 102 L116 144 C138 136 162 132 194 134 L182 146 C152 152 132 164 106 186 Z" fill="#b24cff"/>
+    <path d="M22 24 l8 16 l-16 8 l16 8 l8 16 l8-16 l16-8 l-16-8z" fill="#e66dff"/>
+    <path d="M174 10 l6 12 l-12 6 l12 6 l6 12 l6-12 l12-6 l-12-6z" fill="#e66dff"/>
+    <path d="M156 154 l7 14 l-14 7 l14 7 l7 14 l7-14 l14-7 l-14-7z" fill="#25e6f8"/>
+  </g>
+  <text x="250" y="106" font-family="Montserrat, Arial, sans-serif" font-size="112" font-weight="900" fill="#f3f4f6" letter-spacing="4">GEMINI</text>
+  <text x="252" y="182" font-family="Montserrat, Arial, sans-serif" font-size="52" font-weight="800" fill="#25e6f8" letter-spacing="15">CREATIVE</text>
+</svg>

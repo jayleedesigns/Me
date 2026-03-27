@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Creative | Client Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>body{font-family:Montserrat,sans-serif;background:#020626;color:#fff}</style>
+</head>
+<body class="px-6 md:px-12 py-12">
+  <a href="index.html" class="text-xs tracking-[0.2em] font-black text-slate-400">← BACK HOME</a>
+  <div class="max-w-7xl mx-auto mt-8 grid lg:grid-cols-12 gap-8">
+    <section class="lg:col-span-4 p-6 rounded-3xl border border-white/10 bg-white/5">
+      <h1 class="text-3xl font-black uppercase mb-6">Client Portal</h1>
+      <form class="space-y-4" onsubmit="event.preventDefault();document.getElementById('login-note').classList.remove('hidden');">
+        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl bg-black/35 border border-white/15" required>
+        <input type="password" placeholder="Password" class="w-full px-4 py-3 rounded-xl bg-black/35 border border-white/15" required>
+        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-xs font-black tracking-[0.15em]">SIGN IN</button>
+      </form>
+      <p id="login-note" class="hidden text-xs text-emerald-300 mt-4">Demo portal mode enabled. Connect auth provider next (Supabase/Firebase/Auth0).</p>
+    </section>
+
+    <section class="lg:col-span-8 space-y-6">
+      <div class="p-6 rounded-3xl border border-white/10 bg-white/5">
+        <h2 class="text-xl font-black mb-4">Active Projects</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="text-slate-400"><tr><th class="text-left py-2">Project</th><th class="text-left">Phase</th><th class="text-left">Next Milestone</th><th class="text-left">Status</th></tr></thead>
+            <tbody>
+              <tr class="border-t border-white/10"><td class="py-3">East River Cobras</td><td>Identity Rollout</td><td>Merch Files Delivery</td><td class="text-cyan-300">In Progress</td></tr>
+              <tr class="border-t border-white/10"><td class="py-3">OnCall Services</td><td>Website Build</td><td>Homepage QA</td><td class="text-amber-300">Review</td></tr>
+              <tr class="border-t border-white/10"><td class="py-3">Sam's Pizza</td><td>Campaign Assets</td><td>Print Final Approval</td><td class="text-emerald-300">On Track</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="p-6 rounded-3xl border border-white/10 bg-white/5"><h3 class="font-black mb-3">Invoices</h3><p class="text-sm text-slate-300">No past due invoices. Next invoice posts April 5.</p></article>
+        <article class="p-6 rounded-3xl border border-white/10 bg-white/5"><h3 class="font-black mb-3">Files</h3><p class="text-sm text-slate-300">Client-ready file vault placeholder (connect cloud storage).</p></article>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

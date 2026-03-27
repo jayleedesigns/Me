@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" role="img" aria-label="Gemini Creative mark">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#24f0ff"/>
+      <stop offset="100%" stop-color="#10cfe8"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0%" stop-color="#b44bff"/>
+      <stop offset="100%" stop-color="#e16dff"/>
+    </linearGradient>
+  </defs>
+  <path d="M10 180 C70 168 102 144 144 88 L164 106 C124 168 84 202 24 210 Z" fill="url(#g1)"/>
+  <path d="M122 20 L172 126 L146 152 L114 68 L88 94 L72 78 Z" fill="url(#g1)"/>
+  <path d="M120 238 L82 152 L106 128 L130 182 C156 170 177 162 210 160 L198 176 C164 182 145 196 120 238 Z" fill="url(#g2)"/>
+  <path d="M30 60 l12 26 l-26 12 l26 12 l12 26 l12-26 l26-12 l-26-12z" fill="#ea72ff" opacity="0.9"/>
+  <path d="M182 22 l8 16 l-16 8 l16 8 l8 16 l8-16 l16-8 l-16-8z" fill="#ea72ff"/>
+  <path d="M178 194 l10 22 l-22 10 l22 10 l10 22 l10-22 l22-10 l-22-10z" fill="#24f0ff"/>
+</svg>

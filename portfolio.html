@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Creative | Full Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background:#020626; color:#fff; }
+    .card:hover img { transform: scale(1.05); }
+  </style>
+</head>
+<body class="px-6 md:px-12 py-12">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-10 gap-4 flex-wrap">
+      <div>
+        <p class="text-[10px] tracking-[0.28em] font-black text-cyan-400 mb-2">GEMINI CREATIVE</p>
+        <h1 class="text-4xl md:text-6xl font-black uppercase">Portfolio Library</h1>
+      </div>
+      <a href="index.html#work" class="border border-white/20 px-5 py-3 rounded-full text-xs font-black tracking-[0.14em]">← BACK TO HOME</a>
+    </div>
+    <p class="text-slate-400 mb-8">Standalone gallery of all numbered files in <code>images/portfolio</code> (1–52).</p>
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+  </div>
+
+  <script>
+    const imageNumbers = Array.from({ length: 52 }, (_, i) => i + 1);
+    const gallery = document.getElementById('gallery');
+
+    imageNumbers.forEach((num) => {
+      const src = `images/portfolio/portfolio${num}.jpg`;
+      const card = document.createElement('article');
+      card.className = 'card rounded-2xl overflow-hidden border border-white/10 bg-black/35';
+      card.innerHTML = `
+        <div class="aspect-[4/3] overflow-hidden bg-black/40">
+          <img src="${src}" alt="Portfolio ${num}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy" onerror="this.closest('article').style.display='none';">
+        </div>
+        <div class="p-4">
+          <p class="text-xs font-black tracking-[0.14em] text-slate-400 uppercase">Portfolio ${num}</p>
+          <p class="text-[10px] text-slate-500 mt-1">${src}</p>
+        </div>
+      `;
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>
